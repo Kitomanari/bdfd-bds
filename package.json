@@ -6,7 +6,7 @@
 	"icon": "./assets/icons/ext-logo.png",
 	"displayName": "Bot Designer For Discord: New",
 	"description": "Enjoyed BDFD but want to code your bot comfortable using VS Code? The extension will solve your needs!",
-	"version": "3.1.1",
+	"version": "3.1.2",
 	"homepage": "https://github.com/Synthexia/bdfd-extension#readme",
 	"l10n": "./l10n",
 	"contributors": [
@@ -31,9 +31,11 @@
 		"url": "https://github.com/Synthexia/bdfd-extension"
 	},
 	"engines": {
-		"vscode": "^1.82.0"
+		"vscode": "^1.95.0"
 	},
-	"categories": ["Programming Languages"],
+	"categories": [
+		"Programming Languages"
+	],
 	"main": "./dist/extension.js",
 	"scripts": {
 		"build": "node build.mjs",
@@ -41,7 +43,9 @@
 		"dev": "pnpm run build && pnpm vsce package --no-dependencies",
 		"publish": "pnpm vsce publish --no-dependencies"
 	},
-	"extensionKind": ["ui"],
+	"extensionKind": [
+		"ui"
+	],
 	"contributes": {
 		"views": {
 			"bdfd-container": [
@@ -112,8 +116,12 @@
 		"languages": [
 			{
 				"id": "bds",
-				"aliases": ["bdscript"],
-				"extensions": [".bds"],
+				"aliases": [
+					"bdscript"
+				],
+				"extensions": [
+					".bds"
+				],
 				"configuration": "./language-configuration.json",
 				"icon": {
 					"light": "./assets/icons/icon-l.png",
@@ -509,16 +517,16 @@
 			}
 		}
 	},
-	"packageManager": "pnpm@8.15.3",
+	"packageManager": "pnpm@9.15.0",
 	"devDependencies": {
-		"@types/node": "^20.11.5",
-		"@types/vscode": "1.82.0",
-		"@vscode/vsce": "^2.22.0"
+		"@types/node": "^22.10.1",
+		"@types/vscode": "^1.95.0",
+		"@vscode/vsce": "^3.2.1",
+		"esbuild": "^0.24.0"
 	},
 	"dependencies": {
 		"@synthexia/bdfd-external": "^4.0.1",
 		"@synthexia/bpapi-wrapper": "^4.0.1",
-		"@xhayper/discord-rpc": "^1.1.2",
-		"esbuild": "^0.19.12"
+		"@xhayper/discord-rpc": "^1.2.0"
 	}
 }

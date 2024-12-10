@@ -1,4 +1,4 @@
-import { type TextDocument } from "vscode";
+import { window, type TextDocument } from "vscode";
 
 import { Command } from "@synthexia/bdfd-external";
 
@@ -13,16 +13,16 @@ export async function textDocumentSavedListener(document: TextDocument, local: L
     if (document.languageId != LANG) return;
     
     const { authToken } = await local.getUserData(UserEntry.CurrentAccount);
-    const splittedFileName = document.fileName.split('\\');
+    const pathSubstrings = document.uri.path.split('/');
 
-    const botId = splittedFileName[splittedFileName.length - 2];
-    const commandId = splittedFileName
-        .pop()!
-        .replace(`.${LANG}`, EMPTY);
+    const botId = pathSubstrings[pathSubstrings.length - 2];
+    const commandId = pathSubstrings.pop()!.replace(`.${LANG}`, EMPTY);
     const code = document.getText();
 
     updateCurrentSyncedCommandState(true);
-    await Command.update(authToken, botId, commandId, { code });
+    await Command.update(authToken, botId, commandId, { code }).catch((error) => {
+        window.showErrorMessage(`Something went wrong when saving: ${error}`)
+    });
     updateCurrentSyncedCommandState(false);
 
 }
